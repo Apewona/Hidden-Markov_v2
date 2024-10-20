@@ -127,8 +127,18 @@ def main():
 
     # Przewidywanie stanu i prawdopodobieństw
     hidden_states, probabilities = predict_hidden_states_and_probs(recent_data, model)
-
+    
     # Wyświetlenie stanu i prawdopodobieństw
     display_hidden_states_with_probs(recent_data, hidden_states, probabilities)
+    print("average hidden state; scale 0-7; 90 days period")
+    print('%.3f' % (sum(hidden_states) / 90))
+
+    if (sum(hidden_states) / 90) < 4:
+        print("\033[48;5;46m average HOSSA state \033[0m")
+
+    else:
+       print("\033[48;5;196m average BESSA state \033[0m")
+
+   
 if __name__ == "__main__":
     main()
