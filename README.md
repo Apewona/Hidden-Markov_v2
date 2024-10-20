@@ -5,6 +5,10 @@
 
 This project demonstrates the implementation and training of a **Hidden Markov Model (HMM)** for recognizing hidden states in stock market data, particularly using **yfinance** for fetching historical stock data. The model aims to classify stock market regimes (e.g., bull or bear markets) based on historical stock prices and indicators.
 
+## Disclaimer
+
+**This program is extremely experimental. Use it at your own risk!** The accuracy of the predictions is not guaranteed, and the model is intended for research and educational purposes only. It is not suitable for making financial decisions.
+
 ## Table of Contents
 - [Project Overview](#project-overview)
 - [Dependencies](#dependencies)
@@ -128,8 +132,6 @@ The model is trained to predict the market's hidden states, and each state is as
 
 This project utilizes various open-source Python libraries such as **hmmlearn**, **yfinance**, and **pandas**. Special thanks to the contributors of these libraries.
 
-Feel free to contribute or raise issues if you encounter any bugs or have ideas for improvements!
+
 
 ---
-
-This README provides a comprehensive overview of the project, making it easier for others to understand its purpose and how to use the code.
