@@ -5,6 +5,9 @@
 
 This project demonstrates the implementation and training of a **Hidden Markov Model (HMM)** for recognizing hidden states in stock market data, particularly using **yfinance** for fetching historical stock data. The model aims to classify stock market regimes (e.g., bull or bear markets) based on historical stock prices and indicators.
 
+# How to use:
+run dist/main/main.exe
+
 ## Disclaimer
 
 **This program is extremely experimental. Use it at your own risk!** The accuracy of the predictions is not guaranteed, and the model is intended for research and educational purposes only. It is not suitable for making financial decisions.
