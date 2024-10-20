@@ -1,37 +1,21 @@
-import numpy as np
-from hmmlearn import hmm
-import matplotlib.pyplot as plt
+import yfinance as yf
+import sqlite3
+import pandas as pd
+from datetime import datetime
 
-# Ustawienie losowych wartości dla powtarzalności wyników
-np.random.seed(42)
+# Wybierz ticker
+ticker = "VUSA.L"
 
-# Generowanie syntetycznych danych: zwroty
-# 1000 prób
-n_samples = 1000
-# Przykładowe zwroty dla hossy (małe wartości dodatnie) i bessy (małe wartości ujemne)
-returns_hossa = np.random.normal(loc=0.01, scale=0.02, size=n_samples // 2)  # Hossa
-returns_bessa = np.random.normal(loc=-0.01, scale=0.02, size=n_samples // 2)  # Bessa
-returns = np.concatenate([returns_hossa, returns_bessa])
+# Pobierz dane historyczne
+data = yf.download(ticker, start="2013-01-01", end=datetime.today().strftime('%Y-%m-%d'), interval='1d')
 
-# Reshape do formatu, który wymaga HMM
-returns = returns.reshape(-1, 1)
+# Ustanowienie połączenia z bazą danych SQLite (lub utworzenie nowej bazy danych)
+conn = sqlite3.connect('Vanguard.db')
 
-# Definiowanie modelu HMM
-model = hmm.GaussianHMM(n_components=2, covariance_type="full", n_iter=1000)
+# Zapisz dane do tabeli w bazie danych
+data.to_sql(ticker, conn, if_exists='replace', index=True)
 
-# Fitting modelu na danych
-model.fit(returns)
+# Zamykanie połączenia
+conn.close()
 
-# Przewidywanie stanu na podstawie danych zwrotów
-hidden_states = model.predict(returns)
-
-# Wizualizacja wyników
-plt.figure(figsize=(15, 8))
-plt.plot(returns, label='Zwroty')
-plt.plot(hidden_states, label='Ukryte stany', alpha=0.7)
-plt.title('Model HMM: Hossa i Bessa')
-plt.xlabel('Czas')
-plt.ylabel('Zwroty')
-plt.legend()
-plt.grid()
-plt.show()
+print("Dane zostały zapisane do bazy danych.")
