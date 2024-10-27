@@ -7,6 +7,7 @@ This project demonstrates the implementation and training of a **Hidden Markov M
 
 # How to use:
 run dist/main/main.exe
+![use_image](use.png)
 
 ## Disclaimer
 
